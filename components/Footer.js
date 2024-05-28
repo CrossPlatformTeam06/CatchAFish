@@ -1,11 +1,22 @@
 import { Button, View } from "react-native";
 
-export default function footer() {
+export default function Footer({ navigation }) {
   return (
-    <View>
-      <Button>메인 페이지</Button>
-      <Button>기록 페이지</Button>
-      <Button>검색 페이지</Button>
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10,
+      }}
+    >
+      <Button
+        title="MainPage"
+        onPress={() => navigation.navigate("MainPage")}
+      />
+      <Button
+        title="SearchPage"
+        onPress={() => navigation.navigate("SearchPage")}
+      />
     </View>
   );
 }
