@@ -1,11 +1,13 @@
 import { View, Text } from "react-native";
 import Footer from "../components/Footer";
 import Calendar from "../components/CalendarBox";
+import Carousel from "../components/Carousel";
 
 export default function MainPage() {
   return (
     <View>
       <Text>메인페이지</Text>
+      <Carousel />
       <Calendar />
       <Footer />
     </View>
