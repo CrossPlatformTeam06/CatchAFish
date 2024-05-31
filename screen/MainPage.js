@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Calendar from "../components/CalendarBox";
 import Carousel from "../components/Carousel";
 import MainContents from "../components/MainContents";
+// import * as Font from "expo-font";
 
 export default function MainPage({ navigation }) {
   return (
@@ -14,6 +15,16 @@ export default function MainPage({ navigation }) {
     </ScrollView>
   );
 }
+
+// //폰트 적용
+// const [isReady, setIsReady] = useEffect(false);
+
+// useEffect(async () => {
+//   await Font.loadAsync({
+//     MangoDdobak: require("../assets/fonts/MangoDdobak-B(ttf).ttf"),
+//   });
+//   setIsReady(true);
+// }, []);
 
 //캘린더 컴포넌트를 표시하여 사용자가 언제 어떤 물고기를 잡았는지 시각적으로 확인할 수 있도록 함
 // 활동 요약을 보여주는 컴포넌트(예: 총 포획한 물고기 수, 최근 활동 내역 등)

@@ -53,12 +53,13 @@ const styles = StyleSheet.create({
   container: {
     width: windowWidth,
     backgroundColor: "#fff",
-    paddingTop: 70,
+    paddingTop: 60,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
+    // fontFamily: "MangoDdobak",
   },
 });

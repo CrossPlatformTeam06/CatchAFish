@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Calendar } from "react-native-calendars";
 import FishIcon from "../assets/fish_icon.png";
-import { useState } from "react";
 
 export default function CalendarBox() {
-  //npm install --save react-native-calendars
+  // npm install --save react-native-calendars
 
   const [markedDates, setMarkedDates] = useState({});
 
@@ -18,7 +18,7 @@ export default function CalendarBox() {
 
   return (
     <View style={{ marginTop: 50 }}>
-      <Text style={{ textAlign: "center" }}>낚시 출석 도장</Text>
+      <Text style={styles.title}>낚시 출석 도장</Text>
       <Calendar
         current={"2024-06-01"}
         onDayPress={handleDayPress}
@@ -28,10 +28,28 @@ export default function CalendarBox() {
           return item.marked ? (
             <Image source={FishIcon} style={{ width: 30, height: 30 }} />
           ) : (
-            <Text>{day ? day.day : ""}</Text>
+            <View
+              style={{
+                width: 30,
+                height: 30,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "#000" }}>{day ? "" : day.day}</Text>
+            </View>
           );
         }}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+});
