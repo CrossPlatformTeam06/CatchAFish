@@ -3,32 +3,23 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Modal from 'react-native-modal'
 
-export default function InputDate(){
-    const [selectedDate, setSelectedDate] = useState("0000-00-00");
+export default function InputDate({selectedDate , setSelectedDate}){
     const [showCalendar, setShowCalendar] = useState(false);
-
-    const onDayPress = (day) => {
-        setSelectedDate(day.dateString);
-        setShowCalendar(false);
-    };
-
-    const openCalendar = () => {
-        setShowCalendar(true);
-    }
 
     return(<View style={styles.container}>
         <Text style={styles.text}>날짜 : </Text>
         <Text style={styles.textInput}>{selectedDate}</Text>
-        <Button title="선택" onPress={openCalendar}/>
+        <Button title="선택" onPress={()=>setShowCalendar(true)}/>
         <Modal
             transparent = {true}
             isVisible={showCalendar}
             onRequestClose={() => {
                 setShowCalendar(false); }}
         >
-                <View style={styles.modalContainer}>
-                    <Calendar onDayPress = {onDayPress}/>
-                </View>
+            <View style={styles.modalContainer}>
+                <Calendar onDayPress = {(day)=> 
+                    { setSelectedDate(day.dateString); setShowCalendar(false);}}/>
+            </View>
         </Modal>
     </View>)
 }
