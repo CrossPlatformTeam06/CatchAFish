@@ -1,33 +1,37 @@
-import React, { useState, useContext } from 'react';
 import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
-import Record from './Record';
 
-const InputFish = () =>{
-  const {count, fishes, fishName, fishLength} = useContext(fishContext);
+const InputFish = ({fishes, setFishes, addFish, removeFish}) =>{
 
-  const [inputVal, setInputVal] = useState('');
 
-  const handleAddFish = () =>{
-    addFish({ name: fishName, length: fishLength });
-    setInputValue('');
+  const setFishName = (index, text) => {
+    const updatedFishes = [...fishes];
+    updatedFishes[index].fishName = text;
+    setFishes(updatedFishes);
   }
-  
+
+  const setFishLength = (index, text) => {
+    const updatedFishes = [...fishes];
+    updatedFishes[index].fishLength = text;
+    setFishes(updatedFishes);
+  }
+
   return(
     <>
       <View style={{flexDirection: 'row'}}>
-        <Button style={{padding:10}} title="추가" onPress={handleAddFish}/>
-        <Button style={{padding:100}} title="삭제" onPress={removeFish}/>
+        <Button style={{padding:10}} title="추가" onPress={addFish}/>
+        <Button style={{padding:100}} title="삭제" onPress={(index)=> removeFish(index)}/>
       </View>
-      {fishes.map((fish)=>(
-        <View key={count}>
+      {fishes && fishes.map((fish, index)=>(
+        <View key={index}>
           <View style={styles.container}>
             <Text style={styles.text}>종류 : </Text>
-            <TextInput style = {styles.textInput} placeholder='종류'
-            onChangeText={(text)=>{setFishName(text)}}></TextInput>
+            <TextInput style = {styles.textInput} placeholder='종류' value = {fishes.fishName}
+            onChangeText={(text)=>{setFishName(index, text)}}></TextInput>
           </View>
           <View style={styles.container}>
             <Text style={styles.text}>길이 : </Text>
-            <TextInput style={styles.textInput}  placeholder='길이' onChangeText={(text)=>setFishLength(text)}></TextInput>
+            <TextInput style={styles.textInput}  placeholder='길이' value = {fishes.fishLength}
+            onChangeText={(text)=>setFishLength(index, text)}></TextInput>
           </View>
         </View>
       ))}
