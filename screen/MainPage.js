@@ -1,15 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import Footer from "../components/Footer";
 import Calendar from "../components/CalendarBox";
 import Carousel from "../components/Carousel";
 
 export default function MainPage({ navigation }) {
   return (
-    <View>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Carousel />
       <Calendar />
       <Footer navigation={navigation} />
-    </View>
+    </ScrollView>
   );
 }
 
