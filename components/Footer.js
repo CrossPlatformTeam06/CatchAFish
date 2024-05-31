@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
   button: {
     flexDirection: "row",

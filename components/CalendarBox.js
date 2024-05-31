@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
+    fontFamily: "MangoDdobak",
   },
 });

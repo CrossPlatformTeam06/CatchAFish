@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import {
   View,
   FlatList,
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
-    // fontFamily: "MangoDdobak",
+    fontFamily: "MangoDdobak",
   },
 });
