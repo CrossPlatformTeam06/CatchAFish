@@ -7,7 +7,7 @@ import InputFish from '../components/InputFish';
 import FishRecordModal from '../components/FishRecordModal';
 
 const data = [{
-    place: '서해안 바다',
+    place: '남해안 바다',
     date: '2024-06-01',
     fishes: [{ fishName: '청새치', fishLength: '150cm'}]
 }];
@@ -20,6 +20,7 @@ export default function RecordPage({ navigation }) {
     const [errors, setErrors] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedFish, setSelectedFish] = useState(null);
+    const [recordData, setRecordData] = useState(data); // Record data state
 
     const addFish = () => {
         setFishes([...fishes, { fishName: '', fishLength: '', key: Date.now().toString() }]);
@@ -47,11 +48,17 @@ export default function RecordPage({ navigation }) {
             date: selectedDate,
             fishes
         };
-        data.push(newData);
+        setRecordData([...recordData, newData]); // Update record data state
         setFishes([]);
         setPlace('');
         setSelectedDate("0000-00-00");
         setShowForm(false);
+    }
+
+    const deleteRecord = (index) => {
+        const updatedRecordData = [...recordData];
+        updatedRecordData.splice(index, 1);
+        setRecordData(updatedRecordData);
     }
 
     const openModal = (fishName) => {
@@ -60,14 +67,19 @@ export default function RecordPage({ navigation }) {
         setModalVisible(true);
     }
 
-    const renderFishItem = ({ item }) => (
+    const renderFishItem = ({ item, index }) => (
         <View style={styles.listItem}>
-            <Text>{item.place} - {item.date}</Text>
-            {item.fishes.map(fish => (
-                <TouchableOpacity key={fish.key} onPress={() => openModal(fish.fishName)}>
-                    <Text>{fish.fishName} ({fish.fishLength})</Text>
-                </TouchableOpacity>
-            ))}
+            <View style={styles.recordInfo}>
+                <Text>{item.place} - {item.date}</Text>
+                {item.fishes.map(fish => (
+                    <TouchableOpacity key={fish.key} onPress={() => openModal(fish.fishName)}>
+                        <Text>{fish.fishName} ({fish.fishLength})</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+            <TouchableOpacity onPress={() => deleteRecord(index)} style={styles.deleteButton}>
+                <Text style={styles.deleteButtonText}>X</Text>
+            </TouchableOpacity>
         </View>
     );
 
@@ -89,7 +101,7 @@ export default function RecordPage({ navigation }) {
                 </View>
             ) : (
                 <FlatList
-                    data={data}
+                    data={recordData}
                     renderItem={renderFishItem}
                     keyExtractor={(item, index) => index.toString()}
                 />
@@ -124,9 +136,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     listItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
+    },
+    recordInfo: {
+        flex: 1,
     },
     formContainer: {
         padding: 20,
@@ -138,5 +156,17 @@ const styles = StyleSheet.create({
     },
     footer: {
         padding: 20,
+    },
+    deleteButton: {
+        width: 30, // 정사각형 크기
+        height: 30, // 정사각형 크기
+        backgroundColor: 'red',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    deleteButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
     }
 });
