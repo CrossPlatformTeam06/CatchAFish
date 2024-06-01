@@ -2,14 +2,13 @@ import {View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import { useState } from 'react';
 
 
-export default function InputPlace(){
-    const [place, setPlace] = useState(null);
+export default function InputPlace({place, setPlace}){
 
     return ( <View style={styles.container}>
         <Text style = {styles.text} >장소 : </Text>
         <TextInput style={styles.textInput}  
             value={place} 
-            onChangeText={(place)=>setPlace(place)}
+            onChangeText={setPlace}
             placeholder='장소'></TextInput>
     </View>)
 }
