@@ -6,6 +6,11 @@ import Modal from 'react-native-modal'
 export default function InputDate({selectedDate , setSelectedDate}){
     const [showCalendar, setShowCalendar] = useState(false);
 
+    onDayPress = (day) =>{
+        setSelectedDate(day.dateString);
+        setShowCalendar(false);
+    }
+
     return(<View style={styles.container}>
         <Text style={styles.text}>날짜 : </Text>
         <Text style={styles.textInput}>{selectedDate}</Text>
@@ -17,8 +22,7 @@ export default function InputDate({selectedDate , setSelectedDate}){
                 setShowCalendar(false); }}
         >
             <View style={styles.modalContainer}>
-                <Calendar onDayPress = {(day)=> 
-                    { setSelectedDate(day.dateString); setShowCalendar(false);}}/>
+                <Calendar onDayPress = {onDayPress}/>
             </View>
         </Modal>
     </View>)
