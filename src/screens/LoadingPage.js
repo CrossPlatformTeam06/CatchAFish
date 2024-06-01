@@ -28,7 +28,7 @@ export default function LoadingPage() {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.appTitle}>낚시 기록 어플</Text>
-        <Text style={styles.subTextTitle}>잡은 물고기 기록, 통계 및 검색 기능을 한번에!</Text>
+        <Text style={styles.subTextTitle}>잡은 물고기 기록, 검색 기능을 한번에!</Text>
       </View>
       <View style={styles.middleContainer}>
         <Image source={require('../../assets/Loading_Fishing.png')} style={styles.iconImage} />
