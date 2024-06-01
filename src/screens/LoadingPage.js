@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 export default function LoadingPage() {
   const [loadingCompleted, setLoadingCompleted] = useState(false);
   const fadeAnim = useState(new Animated.Value(0))[0];
-  const loadingBarWidth = useState(new Animated.Value(0))[0];
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -18,14 +17,8 @@ export default function LoadingPage() {
       }).start();
     }, 5000); // 5초 후 로딩 완료
 
-    Animated.timing(loadingBarWidth, {
-      toValue: 1,
-      duration: 5000,
-      useNativeDriver: false,
-    }).start();
-
     return () => clearTimeout(timer);
-  }, [fadeAnim, loadingBarWidth]);
+  }, [fadeAnim]);
 
   const handleLoadingComplete = () => {
     navigation.navigate('MainPage');
@@ -43,19 +36,6 @@ export default function LoadingPage() {
       <View style={styles.bottomContainer}>
         {!loadingCompleted ? (
           <View style={styles.loadingContent}>
-            <View style={styles.loadingBarBackground}>
-              <Animated.View
-                style={[
-                  styles.loadingBar,
-                  {
-                    width: loadingBarWidth.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: ['0%', '100%'],
-                    }),
-                  },
-                ]}
-              />
-            </View>
             <Text style={styles.text}>앱 로딩중...</Text>
           </View>
         ) : (
@@ -96,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-  subText: {
+  subTextTitle: {
     fontSize: 15,
     marginBottom: 20,
     textAlign: 'center',
@@ -107,18 +87,6 @@ const styles = StyleSheet.create({
   },
   loadingContent: {
     alignItems: 'center',
-  },
-  loadingBarBackground: {
-    width: '200%',
-    height: 10,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 5,
-    overflow: 'hidden',
-    marginBottom: 20,
-  },
-  loadingBar: {
-    height: '100%',
-    backgroundColor: '#2DCFA7',
   },
   text: {
     fontSize: 18,
