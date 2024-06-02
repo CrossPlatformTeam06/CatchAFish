@@ -4,7 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainPage from "./screen/MainPage";
 import SearchPage from "./screen/SearchPage";
 import Footer from "./components/Footer";
-import LoadingPage from './screen/LoadingPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +12,9 @@ export default function App() {
   //npm install @react-navigation/native-stack
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoadingPage" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="LoadingPage" component={LoadingPage} />
+      <Stack.Navigator initialRouteName="MainPage">
         <Stack.Screen name="MainPage" component={MainPage} />
+        <Stack.Screen name="SearchPage" component={SearchPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+{/* 
+아래처럼 로딩 페이지 추가를 위한 App.js 파일 수정 필요
+<NavigationContainer> 
+<Stack.Navigator initialRouteName="LoadingPage" screenOptions={{ headerShown: false }}>
+  <Stack.Screen name="LoadingPage" component={LoadingPage} />
+  <Stack.Screen name="MainPage" component={MainPage} />
+</Stack.Navigator>
+</NavigationContainer> */}
+
 export default function LoadingPage() {
   const [loadingCompleted, setLoadingCompleted] = useState(false);
   const fadeAnim = useState(new Animated.Value(0))[0];
@@ -31,7 +40,7 @@ export default function LoadingPage() {
         <Text style={styles.subTextTitle}>잡은 물고기 기록, 검색 기능을 한번에!</Text>
       </View>
       <View style={styles.middleContainer}>
-        <Image source={require('../assets/Loading_Fishing.png')} style={styles.iconImage} />
+        <Image source={require('../../assets/Loading_Fishing.png')} style={styles.iconImage} />
       </View>
       <View style={styles.bottomContainer}>
         {!loadingCompleted ? (
