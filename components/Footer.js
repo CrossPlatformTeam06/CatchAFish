@@ -19,6 +19,12 @@ export default function Footer({ navigation }) {
       >
         <Icon name="search" size={30} color="#000" />
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("RecordPage")}
+      >
+        <Icon name="edit" size={30} color="#000" />
+      </TouchableOpacity>
     </View>
   );
 }
