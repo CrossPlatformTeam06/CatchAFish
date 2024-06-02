@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -29,13 +28,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-=======
-import React from 'react';
-import Search from './src/Search';
-
-const App = () => {
-  return <Search />;
-};
-
-export default App;
->>>>>>> SearchPage

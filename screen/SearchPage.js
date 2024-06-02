@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ActivityIndicator, Text, Button } from 'react-native';
-import SearchBar from '../components/SearchBar';
-import FishList from '../components/FishList';
-import { fetchFishData } from '../components/api';
+import SearchBar from './Component/SearchBar';
+import FishList from './Component/FishList';
+import { fetchFishData } from './api';
 
-const Search = () => {
+const Search = ({ navigation }) => {
   const [fishData, setFishData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -25,16 +25,11 @@ const Search = () => {
     }
   };
 
-  const handleHomePress = () => {
-    // 홈 버튼을 눌렀을 때의 동작을 여기에 정의합니다.
-    console.log('Home button pressed');
-  };
-
   return (
     <View style={styles.container}>
       <SearchBar style={styles.searchBar} onSearch={handleSearch} />
       <View style={styles.homeButton}>
-        <Button title="Home" onPress={handleHomePress} />
+        <Button title="Home" onPress={() => navigation.navigate('MainPage')} />
       </View>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
