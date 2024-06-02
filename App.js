@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import MainPage from "./screen/MainPage";
 import SearchPage from "./screen/SearchPage";
-import Footer from "./components/Footer";
 
 const Stack = createNativeStackNavigator();
 
