@@ -31,7 +31,7 @@ export default function LoadingPage() {
         <Text style={styles.subTextTitle}>잡은 물고기 기록, 검색 기능을 한번에!</Text>
       </View>
       <View style={styles.middleContainer}>
-        <Image source={require('../../assets/Loading_Fishing.png')} style={styles.iconImage} />
+        <Image source={require('../assets/Loading_Fishing.png')} style={styles.iconImage} />
       </View>
       <View style={styles.bottomContainer}>
         {!loadingCompleted ? (
