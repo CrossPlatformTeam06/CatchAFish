@@ -1,11 +1,74 @@
-import { View, Text } from "react-native";
-import Footer from "../components/Footer";
+import React, { useState } from 'react';
+import { View, StyleSheet, ActivityIndicator, Text, Button } from 'react-native';
+import SearchBar from '../components/SearchBar';
+import FishList from '../components/FishList';
+import { fetchFishData } from '../components/api';
 
-export default function SearchPage({ navigation }) {
+const Search = () => {
+  const [fishData, setFishData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSearch = async (query) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchFishData(query);
+      console.log('Fetched Fish Data:', data);
+      const sortedData = data.sort((a, b) => (a.mfSpeciesKor > b.mfSpeciesKor) ? 1 : -1); // 가나다순 정렬
+      setFishData(sortedData);
+    } catch (error) {
+      console.error('Error in handleSearch:', error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleHomePress = () => {
+    // 홈 버튼을 눌렀을 때의 동작을 여기에 정의합니다.
+    console.log('Home button pressed');
+  };
+
   return (
-    <View>
-      <Text>검색페이지</Text>
-      <Footer navigation={navigation} />
+    <View style={styles.container}>
+      <SearchBar style={styles.searchBar} onSearch={handleSearch} />
+      <View style={styles.homeButton}>
+        <Button title="Home" onPress={handleHomePress} />
+      </View>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : (
+        <FishList fishData={fishData} onPressItem={(fish) => console.log(fish)} />
+      )}
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    position: 'relative', // 부모 컨테이너 설정
+  },
+  homeButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 1, // 검색 바 위로 레이어 쌓이도록 설정
+  },
+  searchBar: {
+    marginTop: 150, // 검색 바를 아래로 이동
+    zIndex: 0, // 검색 바 레이어를 하위로 이동
+  },
+  buttonText: {
+    fontSize: 16,
+  },
+  errorText: {
+    color: 'red',
+  },
+});
+
+export default Search;
