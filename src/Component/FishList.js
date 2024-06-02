@@ -7,8 +7,8 @@ const FishList = ({ fishData, onPressItem }) => {
     <View style={styles.container}>
       <FlatList
         data={fishData}
-        renderItem={({ item }) => <FishItem fish={item} onPress={onPressItem} />}
-        keyExtractor={(item) => item.mfSpeciesKor} // 이름을 key로 사용
+        renderItem={({ item }) => <FishItem fish={item} onPress={() => onPressItem(item)} />}
+        keyExtractor={(item) => item.mfSpeciesKor}
       />
     </View>
   );

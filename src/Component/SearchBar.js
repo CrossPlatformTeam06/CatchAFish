@@ -26,6 +26,7 @@ const SearchBar = ({ onSearch }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    marginTop: 60, // 홈 버튼 아래로 이동
     marginBottom: 20,
   },
   input: {
