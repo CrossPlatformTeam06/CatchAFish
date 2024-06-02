@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ActivityIndicator, Text, Button } from 'react-native';
-import SearchBar from './Component/SearchBar';
-import FishList from './Component/FishList';
-import { fetchFishData } from './api';
+import SearchBar from '../components/SearchBar';
+import FishList from '../components/FishList';
+import { fetchFishData } from '../components/api';
 
 const Search = () => {
   const [fishData, setFishData] = useState([]);
