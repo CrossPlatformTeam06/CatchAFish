@@ -9,6 +9,7 @@ import {
 import SearchBar from "../components/SearchBar";
 import FishList from "../components/FishList";
 import { fetchFishData } from "../components/api";
+import Footer from "../components/Footer";
 
 const Search = ({ navigation }) => {
   const [fishData, setFishData] = useState([]);
@@ -36,9 +37,6 @@ const Search = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SearchBar style={styles.searchBar} onSearch={handleSearch} />
-      <View style={styles.homeButton}>
-        <Button title="Home" onPress={() => navigation.navigate("MainPage")} />
-      </View>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : error ? (
@@ -49,6 +47,7 @@ const Search = ({ navigation }) => {
           onPressItem={(fish) => console.log(fish)}
         />
       )}
+      <Footer navigation={navigation} />
     </View>
   );
 };
